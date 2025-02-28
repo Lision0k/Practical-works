@@ -1,53 +1,45 @@
 import static java.lang.System.*;
-
-class Express {
-    float x;
-    float a;
-    float b;
-
-    Express(float x) {
-        this.x = x;
+class Reader{
+    String name;
+    String number;
+    String facult;
+    String birthday;
+    String telef;
+    Reader(String name, String number, String facult, String birthday, String telef){
+        this.name = name;
+        this.number = number;
+        this.facult = facult;
+        this.birthday = birthday;
+        this.telef = telef;
     }
-
-    Express(float a, float b) {
-        this.a = a;
-        this.b = b;
+    void takeBook(int k){
+        out.printf("%S взял(а) %d книг(и) \n", this.name, k);
     }
-
-    Express(float x, float a, float b) {
-        this.x = x;
-        this.a = a;
-        this.b = b;
+    void takeBook(String[] Books){
+        out.printf("%S взял(а) книги: %S \n", this.name, String.join(", ", Books));
     }
-
-    public float chet1() {
-        return 3 * this.x + 5;
+    void returnBook(int k){
+        out.printf("%S вернул(а) %d книг(и) \n", this.name, k);
     }
-
-    public String chet2() {
-        if ((this.a - this.b) != 0) {
-            String rez = String.valueOf((this.a + this.b) / (this.a - this.b));
-            return rez;
-        }
-        return "Error";
-    }
-
-    public String chet3() {
-        if (this.b != 0) {
-            String rez = String.valueOf((this.a * this.x) / this.b);
-            return rez;
-        }
-        return "Error";
+    void returnBook(String[] Books){
+        out.printf("%S вернул(а) книги: %S \n", this.name, String.join(", ", Books));
     }
 }
-
 public class Main {
     public static void main(String[] args) {
-        Express X = new Express(2.1f);
-        out.println(X.chet1());
-        Express Y = new Express(2.1f, 1.1f);
-        out.println(Y.chet2());
-        Express Z = new Express(2.1f, 1.2f, 2.0f);
-        out.println(Z.chet3());
+        Reader[] readers = new Reader[5];
+        readers[0] = new Reader("Константин", "395K", "Griffindor", "29.09.2007", "89996660022");
+        readers[1] = new Reader("Елизавета", "199L", "Ravenclaw", "09.11.2007", "89245378100");
+        readers[2] = new Reader("Мария", "271M", "Slytherin", "21.09.2007", "89784442332");
+        readers[3] = new Reader("Марина", "289M", "Ravenclaw", "15.08.2007", "84562347795");
+        readers[4] = new Reader("Ольга", "175O", "Hufflepuff", "08.06.2007", "89956432218");
+        readers[0].takeBook(7);
+        String[] E = {"Мумитролли", "Назад в будущее"};
+        readers[1].takeBook(E);
+        readers[2].returnBook(3);
+        String[] M = {"Преступление и наказание", "Горе от ума", "Мастер и Маргарита"};
+        readers[3].takeBook(M);
+        String[] O = {"Собачье сердце"};
+        readers[4].takeBook(O);
     }
 }
