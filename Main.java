@@ -37,37 +37,47 @@ public class Main {
             float ar = in.nextFloat();
             dom[i] = new House(ad, fl, kr, ar);
         }
-        int count = 0;
         out.print("Введите число комнат для вывода соответствующих квартир: ");
-        int k = in.nextInt();
-        for (House i : dom) {
-            if (i.krooms == k) {
-                i.flat();
-                count++;
-            }
-        }
-        if (count == 0)
-            out.println("Квартир подходящих под данные критерии нет ");
+        int r = in.nextInt();
+        flats(dom, r);
         out.println("Введите число комнат и этаж для вывода соответствующих квартир");
         out.print("количество комнат: ");
         int k1 = in.nextInt();
         out.print("Этаж: ");
         int f = in.nextInt();
-        count = 0;
-        for (House i : dom) {
-            if (i.krooms == k1 & i.floor == f) {
-                i.flat();
-                count++;
+        flats(dom, k1, f);
+        out.print("Введите площадь для вывода квартир, площадь которых её превосходит: ");
+        float a = in.nextFloat();
+        areaFlats(dom, a);
+    }
+    public static void flats(House[] dom, int... k){
+        int count = 0;
+        if (k.length == 1){
+            for (House i : dom) {
+                if (i.krooms == k[0]) {
+                    i.flat();
+                    count++;
+                }
+            }
+        }
+        else if(k.length == 2){
+            for (House i : dom) {
+                if (i.krooms == k[0] & i.floor == k[1]) {
+                    i.flat();
+                    count++;
+                }
             }
         }
         if (count == 0)
             out.println("Квартир подходящих под данные критерии нет ");
-        count = 0;
-        out.print("Введите площадь для вывода квартир, площадь которых её превосходит: ");
-        float a = in.nextFloat();
+    }
+    public static void areaFlats(House[] dom, float ar){
+        int count = 0;
         for (House i : dom) {
-            if (i.area > a)
+            if (i.area > ar) {
                 i.flat();
+                count++;
+            }
         }
         if (count == 0)
             out.println("Квартир подходящих под данные критерии нет ");
