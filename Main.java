@@ -15,13 +15,13 @@ class Reader{
     void takeBook(int k){
         out.printf("%S взял(а) %d книг(и) \n", this.name, k);
     }
-    void takeBook(String[] Books){
+    void takeBook(String ... Books){
         out.printf("%S взял(а) книги: %S \n", this.name, String.join(", ", Books));
     }
     void returnBook(int k){
         out.printf("%S вернул(а) %d книг(и) \n", this.name, k);
     }
-    void returnBook(String[] Books){
+    void returnBook(String ... Books){
         out.printf("%S вернул(а) книги: %S \n", this.name, String.join(", ", Books));
     }
 }
@@ -34,12 +34,9 @@ public class Main {
         readers[3] = new Reader("Марина", "289M", "Ravenclaw", "15.08.2007", "84562347795");
         readers[4] = new Reader("Ольга", "175O", "Hufflepuff", "08.06.2007", "89956432218");
         readers[0].takeBook(7);
-        String[] E = {"Мумитролли", "Назад в будущее"};
-        readers[1].takeBook(E);
+        readers[1].takeBook("Мумитролли", "Назад в будущее");
+        readers[3].takeBook("Преступление и наказание", "Горе от ума", "Мастер и Маргарита");
         readers[2].returnBook(3);
-        String[] M = {"Преступление и наказание", "Горе от ума", "Мастер и Маргарита"};
-        readers[3].takeBook(M);
-        String[] O = {"Собачье сердце"};
-        readers[4].takeBook(O);
+        readers[4].returnBook("Собачье сердце");
     }
 }
